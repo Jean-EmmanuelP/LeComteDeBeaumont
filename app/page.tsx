@@ -47,11 +47,6 @@ export default function Home() {
     }
   }, []);
 
-  const changeLanguage = (newLang) => {
-    setLang(newLang);
-    localStorage.setItem("lang", newLang);
-  };
-
   // Raccourci pour accéder aux textes traduits
   const t = translations[lang];
 

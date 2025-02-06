@@ -21,7 +21,7 @@ export function Notification({ isVisible, onClose }: NotificationProps) {
             <div className="flex-1">
               <h4 className="text-white font-semibold mb-2">Coming Soon</h4>
               <p className="text-white/80 text-sm">
-                This feature is coming very soon. We're currently awaiting funding to bring it to life.
+                This feature is coming very soon. We&apos;re currently awaiting funding to bring it to life.
               </p>
             </div>
             <button onClick={onClose} className="text-white/60 hover:text-white transition-colors">

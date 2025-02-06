@@ -23,7 +23,10 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-declare global {
+// --- Utilisation de l'augmentation de module au lieu d'un namespace global ---
+// Ceci ajoute le tag <model-viewer> aux éléments intrinsèques de JSX.
+export {};
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "model-viewer": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -65,13 +68,21 @@ const AIProcessingStep = ({ onComplete }: { onComplete: () => void }) => {
   );
 };
 
+// --- Définition de l'interface pour typer les éléments granit ---
+interface GranitElement {
+  granit_id: number | string;
+  granit_title: string;
+  granit_description: string;
+  granit_image: string;
+}
+
 interface GranitElementsProps {
   onMaterialSelect: (material: string) => void;
   lang: string;
 }
 
 const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
-  const [granitElements, setGranitElements] = useState<any[] | null>(null);
+  const [granitElements, setGranitElements] = useState<GranitElement[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
   const [showNotification, setShowNotification] = useState(false);
@@ -200,7 +211,8 @@ export default function Page() {
   const tDemo = translations[lang].demo;
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [prompt, setPrompt] = useState(
+  // Comme le prompt ne change pas, nous n'avons plus besoin de récupérer setPrompt.
+  const [prompt] = useState(
     "A fallen Native American chief, his body lying on the battlefield. His elaborate headdress is askew, and his face shows a mix of determination and peace. His hand still grips a traditional weapon, symbolizing his fight to the very end. The scene captures the tragedy and nobility of a leader who died defending his people and land."
   );
   const [isPromptVisible, setIsPromptVisible] = useState(false);

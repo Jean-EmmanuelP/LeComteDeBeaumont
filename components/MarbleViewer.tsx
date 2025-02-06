@@ -12,7 +12,6 @@ interface MarbleViewerProps {
 export function MarbleViewer({ selectedMaterial }: MarbleViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [showNotification, setShowNotification] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -44,7 +43,6 @@ export function MarbleViewer({ selectedMaterial }: MarbleViewerProps) {
         })
 
         if (!marbleObject) {
-          setError("Marble object not found in the 3D model")
           return
         }
 
@@ -70,7 +68,6 @@ export function MarbleViewer({ selectedMaterial }: MarbleViewerProps) {
             undefined,
             (err) => {
               console.error("Error loading texture:", err)
-              setError("Failed to load the selected marble texture")
             },
           )
         }
@@ -78,7 +75,6 @@ export function MarbleViewer({ selectedMaterial }: MarbleViewerProps) {
       undefined,
       (err) => {
         console.error("Error loading 3D model:", err)
-        setError("Failed to load the 3D model")
       },
     )
 
