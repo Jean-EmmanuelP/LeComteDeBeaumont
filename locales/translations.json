@@ -1,0 +1,92 @@
+{
+  "en": {
+    "hero": {
+      "title": "Le Comte\nde\nBeaumont",
+      "description": "The Comte de Baumont is a refined prompt-based solution that transforms your message into a customizable 3D visualization.\nMerging AI with robotics, it elegantly brings your vision to life.\nExperience transformation—delivered to your door.",
+      "button": "Try a demo"
+    },
+    "vision": {
+      "title": "Our Vision",
+      "paragraphs": [
+        "At Le Comte de Beaumont, we select exceptional materials with extreme sensitivity, giving birth to unique and meaningful creations. The stone, both solid and elegant, is at the heart of our craftsmanship.",
+        "Marble, a rock of great hardness and multiple nuances, embodies both refinement and durability. Sourced from the most prestigious quarries around the world, it is a timeless symbol of excellence, used since antiquity in sculpture and architecture.",
+        "Each stone we offer is the result of a rigorous selection and is transformed with precision, revealing its unique character and natural beauty."
+      ]
+    },
+    "technique": {
+      "title": "Our Technique"
+    },
+    "partners": {
+      "title": "Our Partners",
+      "description": "Our exceptional clientele includes luxury houses, prestigious hotels, private estates, discerning collectors, renowned governmental and cultural institutions, as well as top real estate developers who trust us with creating contemporary castles, exquisite reproductions, and innovative artworks."
+    },
+    "demo": {
+      "backButton": "← Back",
+      "enterPrompt": "Enter your prompt:",
+      "generateButton": "Generate the 3D Modelization",
+      "visualization": "Your 3D Visualization",
+      "selectMaterial": "Select Your Material",
+      "resetSelection": "Reset Selection"
+    }
+  },
+  "fr": {
+    "hero": {
+      "title": "Le Comte\nde\nBeaumont",
+      "description": "Le Comte de Baumont est une solution raffinée basée sur des prompts qui transforme votre message en une visualisation 3D personnalisable.\nFusionnant l'IA et la robotique, il donne vie élégamment à votre vision.\nDécouvrez la transformation—livrée à votre porte.",
+      "button": "Essayez une démo"
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "paragraphs": [
+        "Chez Le Comte de Beaumont, nous sélectionnons des matériaux d'exception avec une sensibilité extrême, donnant naissance à des créations uniques et porteuses de sens. La pierre, à la fois solide et élégante, est au cœur de notre savoir-faire.",
+        "Le marbre, roche d'une grande dureté et aux multiples nuances, incarne à la fois raffinement et durabilité. Provenant des carrières les plus prestigieuses à travers le monde, il est un symbole intemporel d'excellence, utilisé depuis l'Antiquité en sculpture et en architecture.",
+        "Chaque pierre que nous proposons est issue d'une sélection rigoureuse et transformée avec exigence, révélant ainsi son caractère unique et sa beauté naturelle."
+      ]
+    },
+    "technique": {
+      "title": "Notre Technique"
+    },
+    "partners": {
+      "title": "Nos Partenaires",
+      "description": "Notre clientèle d'exception, comprenant des maisons de luxe, des hôtels prestigieux, des domaines privés, des collectionneurs avisés, des institutions gouvernementales et culturelles, ainsi que des promoteurs immobiliers de renom, nous confie la réalisation de châteaux contemporains, de reproductions exquises et d'œuvres d'art novatrices."
+    },
+    "demo": {
+      "backButton": "← Retour",
+      "enterPrompt": "Entrez votre prompt :",
+      "generateButton": "Générer la modélisation 3D",
+      "visualization": "Votre visualisation 3D",
+      "selectMaterial": "Sélectionnez votre matériau",
+      "resetSelection": "Réinitialiser la sélection"
+    }
+  },
+  "ar": {
+    "hero": {
+      "title": "لو كونت\nدو\nبومونت",
+      "description": "لو كونت دي بومونت هو حل متطور يعتمد على الأوامر يحول رسالتك إلى تصور ثلاثي الأبعاد قابل للتخصيص.\nيجمع بين الذكاء الاصطناعي والروبوتات، ليحول رؤيتك إلى واقع بأناقة.\nاختبر التحول—يصل إلى بابك.",
+      "button": "جرب العرض التوضيحي"
+    },
+    "vision": {
+      "title": "رؤيتنا",
+      "paragraphs": [
+        "في لو كونت دي بومونت، نختار المواد الاستثنائية بحساسية فائقة، مما يخلق إبداعات فريدة ومعبرة. الحجر، الذي يجمع بين الصلابة والأناقة، هو قلب حرفتنا.",
+        "الرخام، صخرة ذات صلابة كبيرة وتنوعات متعددة، يجسد كل من الرقي والمتانة. مأخوذ من أرقى المحاجر حول العالم، هو رمز خالد للتميز، مستخدم منذ العصور القديمة في النحت والعمارة.",
+        "كل حجر نقدمه هو نتيجة اختيار صارم ومعالجة دقيقة، تكشف عن طابعه الفريد وجماله الطبيعي."
+      ]
+    },
+    "technique": {
+      "title": "تقنيتنا"
+    },
+    "partners": {
+      "title": "شركاؤنا",
+      "description": "عملاؤنا المميزون يشملون بيوت الفخامة، الفنادق الراقية، العقارات الخاصة، هواة الجمع المميزين، المؤسسات الحكومية والثقافية، فضلاً عن مطوري العقارات المعروفين الذين يثقون بنا في إنشاء قلاع معاصرة، وتكرارات رائعة، وأعمال فنية مبتكرة."
+    },
+    "demo": {
+      "backButton": "← رجوع",
+      "enterPrompt": "أدخل الوصف الخاص بك:",
+      "generateButton": "إنشاء النموذج ثلاثي الأبعاد",
+      "visualization": "التصور ثلاثي الأبعاد الخاص بك",
+      "selectMaterial": "اختر المادة الخاصة بك",
+      "resetSelection": "إعادة تعيين الاختيار"
+    }
+  }
+}

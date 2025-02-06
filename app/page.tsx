@@ -1,101 +1,176 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { ppEditorialNewUltralightItalic, inter } from "../app/fonts";
 import Image from "next/image";
+import Link from "next/link";
+import DynamicFrameLayout from "../components/DynamicFrameLayout";
+import translations from "../locales/translations.json";
+
+// Liste des partenaires
+const partners = [
+  {
+    name: "Cartier",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Cartier-logo-Z0KBxSjE0eYbirVxbOfSayvVWgiWnT.svg",
+    url: "https://www.cartier.com/",
+  },
+  {
+    name: "Louvre",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/provisoire-louvre-logo-gsjNsePe6cfbFrqcGqnQptF0EljzBP.svg",
+    url: "https://www.louvre.fr/",
+  },
+  {
+    name: "Kering",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kering-PM76xQEY603nhfIjeB5GACqb0lnC8p.svg",
+    url: "https://www.kering.com/",
+  },
+  {
+    name: "Sotheby's",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SOTHEBYS-logo-1-O5cSjSIZYXRaO5rPxhKAVu4ocYnJS9.svg",
+    url: "https://www.sothebys.com/",
+  },
+  {
+    name: "Four Seasons",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/four_seasons-TIxYqYrwBF83tK3wxnXidEPnydjbHH.svg",
+    url: "https://www.fourseasons.com/",
+  },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Gestion de la langue avec sauvegarde dans le localStorage
+  const [lang, setLang] = useState("en");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const storedLang = localStorage.getItem("lang");
+    if (storedLang) {
+      setLang(storedLang);
+    }
+  }, []);
+
+  const changeLanguage = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem("lang", newLang);
+  };
+
+  // Raccourci pour accéder aux textes traduits
+  const t = translations[lang];
+
+  return (
+    <div
+      className={`min-h-screen bg-[#141414] ${ppEditorialNewUltralightItalic.variable} ${inter.variable}`}
+    >
+      {/* Section Hero */}
+      <section className="flex items-center justify-center p-8 lg:h-screen">
+        <div className="w-full h-full flex flex-col md:flex-row items-start gap-8 md:gap-8">
+          {/* Contenu gauche */}
+          <div className="w-full md:w-[260px] flex-shrink-0 flex flex-col justify-between h-full">
+            <div className="flex flex-col gap-16">
+              <h1
+                className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-white/80 tracking-tighter leading-[130%]`}
+              >
+                {t.hero.title.split("\n").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </h1>
+              <div className={`${inter.className} flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}>
+                <div className="space-y-6">
+                  <div className="h-px bg-white/10 w-full" />
+                  {t.hero.description.split("\n").map((line, index) => (
+                    <p key={index}>{line}</p>
+                  ))}
+                  <div className="h-px bg-white/10 w-full" />
+                </div>
+              </div>
+              <div className="w-8 h-8 relative opacity-80 hover:opacity-100 transition-opacity">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-04%20at%2019.43.28-cL9LjPagIWxtciIwDKhrH8A2uq6dwr.png"
+                  alt="Le Comte de Baumont"
+                  fill
+                  className="object-cover rounded-full grayscale"
+                />
+              </div>
+            </div>
+            <Link
+              href="/demo"
+              className="inline-block px-6 py-3 text-white/70 border border-white/20 rounded-full font-medium hover:bg-white/5 transition-colors text-center w-full max-w-[260px] text-sm mt-16"
+            >
+              {t.hero.button}
+            </Link>
+          </div>
+
+          {/* Contenu droit */}
+          <div className="w-full md:flex-grow h-[60vh] md:h-[70vh]">
+            <DynamicFrameLayout />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      {/* Section Notre Vision */}
+      <section id="vision" className="py-16 px-8 bg-white h-screen flex items-center justify-center flex-col">
+        <h2
+          className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-black tracking-tighter mb-16 text-center`}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          {t.vision.title}
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-8">
+          {t.vision.paragraphs.map((para, index) => (
+            <p key={index} className={`${inter.className} text-black text-base md:text-lg leading-relaxed`}>
+              {para}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Section Notre Technique */}
+      <section id="technique" className="py-16 px-8 h-screen flex items-center justify-center flex-col">
+        <h2
+          className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-white/80 tracking-tighter mb-16 text-center`}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          {t.technique.title}
+        </h2>
+        <div className="w-full max-w-4xl mx-auto">
+          <video className="w-full h-auto" controls autoPlay loop muted playsInline>
+            <source
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Statue%20video%20(2)-65trakXfBLsXkvEACaJ9mbglB5tbvS.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
+      {/* Section Partners */}
+      <section id="partners" className="py-16 px-8 lg:h-screen bg-white flex items-center justify-center flex-col">
+        <h2
+          className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-black tracking-tighter mb-16 text-center`}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          {t.partners.title}
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24 mb-16 max-w-4xl mx-auto">
+          {partners.map((partner) => (
+            <Link
+              key={partner.name}
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center transition-opacity duration-300 hover:opacity-80"
+            >
+              <div className="w-32 h-32 md:w-48 md:h-48">
+                <div
+                  className="w-full h-full bg-contain bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${partner.logo || "/placeholder.svg"})` }}
+                />
+              </div>
+            </Link>
+          ))}
+        </div>
+        <p className={`${inter.className} text-black text-center max-w-3xl mx-auto text-sm md:text-base leading-relaxed`}>
+          {t.partners.description}
+        </p>
+      </section>
     </div>
   );
 }
