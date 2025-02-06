@@ -8,7 +8,6 @@ import Image from "next/image";
 import translations from "../../locales/translations.json";
 import { supabase } from "@/lib/supabase";
 import { MaterialCard } from "@/components/MaterialCard";
-import { Notification } from "@/components/Notification";
 import { Button } from "@/components/ui/button";
 
 // Définition des étapes
@@ -20,7 +19,11 @@ const steps = [
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
 };
 
 // On définit ici le type de langue accepté
@@ -40,7 +43,12 @@ const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
         ar
         shadow-intensity="1"
         camera-orbit="0deg 75deg 2m"
-        style={{ width: "100%", height: "100%", position: "relative", zIndex: 10 }}
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          zIndex: 10
+        }}
       />
     </div>
   );
@@ -56,7 +64,11 @@ const AIProcessingStep = ({ onComplete }: { onComplete: () => void }) => {
       <motion.div
         className="w-16 h-16 border-t-2 border-white rounded-full"
         animate={{ rotate: 360 }}
-        transition={{ duration: 0.5, ease: "linear", repeat: Infinity }}
+        transition={{
+          duration: 0.5,
+          ease: "linear",
+          repeat: Infinity
+        }}
       />
     </div>
   );
@@ -76,10 +88,13 @@ interface GranitElementsProps {
 }
 
 const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
-  const [granitElements, setGranitElements] = useState<GranitElement[] | null>(null);
+  const [granitElements, setGranitElements] = useState<GranitElement[] | null>(
+    null
+  );
   const [error, setError] = useState<string | null>(null);
-  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
-  const [showNotification, setShowNotification] = useState(false);
+  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchGranitElements = async () => {
@@ -102,7 +117,6 @@ const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
   const handleMaterialSelect = (material: string) => {
     setSelectedMaterial(material);
     onMaterialSelect(material);
-    setShowNotification(true);
   };
 
   if (error) {
@@ -153,14 +167,6 @@ const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
                   )
                 }
               />
-              {selectedMaterial === element.granit_title.toLowerCase().replace(/ /g, "_") && (
-                <Notification
-                  isVisible={showNotification}
-                  onClose={() => setShowNotification(false)}
-                >
-                  {`You've selected ${element.granit_title}. The 3D model has been updated.`}
-                </Notification>
-              )}
             </div>
           ))}
         </motion.div>
@@ -253,7 +259,9 @@ export default function Page() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#141414] flex flex-col p-4 sm:p-8 ${ppEditorialNewUltralightItalic.variable} ${inter.className}`}>
+    <div
+      className={`min-h-screen bg-[#141414] flex flex-col p-4 sm:p-8 ${ppEditorialNewUltralightItalic.variable} ${inter.className}`}
+    >
       {/* Sélecteur de langue */}
       <div className="flex justify-end p-4">
         <button onClick={() => changeLanguage("en")} className="mx-2">
@@ -267,7 +275,10 @@ export default function Page() {
         </button>
       </div>
 
-      <Link href="/" className="absolute top-4 left-4 text-white/70 hover:text-white text-sm sm:text-base">
+      <Link
+        href="/"
+        className="absolute top-4 left-4 text-white/70 hover:text-white text-sm sm:text-base"
+      >
         {tDemo.backButton}
       </Link>
 
@@ -283,7 +294,9 @@ export default function Page() {
           <motion.div
             className="absolute h-px bg-white/40 top-1/2 -translate-y-1/2 z-0"
             initial={{ width: "0%" }}
-            animate={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+            animate={{
+              width: `${(currentStep / (steps.length - 1)) * 100}%`
+            }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           />
           <motion.div
@@ -306,10 +319,16 @@ export default function Page() {
               initial="hidden"
               animate="visible"
               exit="hidden"
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.2 } }
+              }}
               className="space-y-8"
             >
-              <motion.h2 className="text-2xl sm:text-3xl text-white/90 font-light" variants={fadeInVariants}>
+              <motion.h2
+                className="text-2xl sm:text-3xl text-white/90 font-light"
+                variants={fadeInVariants}
+              >
                 {tDemo.enterPrompt}
               </motion.h2>
               <motion.div
@@ -329,12 +348,21 @@ export default function Page() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, ease: "easeInOut" }}>
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                  >
                     {prompt}
                   </motion.span>
                 </motion.div>
               </motion.div>
-              <audio ref={audioRef} src="/keyboard-typing.mp3" loop onError={() => setIsAudioSupported(false)} />
+              <audio
+                ref={audioRef}
+                src="/keyboard-typing.mp3"
+                loop
+                onError={() => setIsAudioSupported(false)}
+              />
               <AnimatePresence>
                 {isTypingComplete && (
                   <motion.div
@@ -389,7 +417,10 @@ export default function Page() {
                   />
                 )}
               </div>
-              <GranitElements onMaterialSelect={handleMaterialSelect} lang={lang} />
+              <GranitElements
+                onMaterialSelect={handleMaterialSelect}
+                lang={lang}
+              />
             </motion.div>
           )}
         </AnimatePresence>
