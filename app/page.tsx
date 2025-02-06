@@ -1,11 +1,46 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from "react";
 import { ppEditorialNewUltralightItalic, inter } from "../app/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import DynamicFrameLayout from "../components/DynamicFrameLayout";
-import translations from "../locales/translations.json";
+import translationsData from "../locales/translations.json";
+
+// Définition du type de langue accepté
+type Language = "en" | "fr" | "ar";
+
+// Définition de la structure des traductions (ajustez si nécessaire)
+interface Translations {
+  en: {
+    hero: {
+      title: string;
+      description: string;
+      button: string;
+    };
+    vision: {
+      title: string;
+      paragraphs: string[];
+    };
+    technique: {
+      title: string;
+    };
+    partners: {
+      title: string;
+      description: string;
+    };
+    demo: {
+      backButton: string;
+      enterPrompt: string;
+      generateButton: string;
+    };
+  };
+  fr: Translations["en"];
+  ar: Translations["en"];
+}
+
+// On force le typage du JSON importé
+const translations = translationsData as Translations;
 
 // Liste des partenaires
 const partners = [
@@ -37,12 +72,12 @@ const partners = [
 ];
 
 export default function Home() {
-  // Gestion de la langue avec sauvegarde dans le localStorage
-  const [lang, setLang] = useState("en");
+  // Gestion de la langue avec sauvegarde dans le localStorage, typée en Language
+  const [lang, setLang] = useState<Language>("en");
 
   useEffect(() => {
     const storedLang = localStorage.getItem("lang");
-    if (storedLang) {
+    if (storedLang === "en" || storedLang === "fr" || storedLang === "ar") {
       setLang(storedLang);
     }
   }, []);
@@ -70,7 +105,9 @@ export default function Home() {
                   </span>
                 ))}
               </h1>
-              <div className={`${inter.className} flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}>
+              <div
+                className={`${inter.className} flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}
+              >
                 <div className="space-y-6">
                   <div className="h-px bg-white/10 w-full" />
                   {t.hero.description.split("\n").map((line, index) => (
@@ -104,7 +141,10 @@ export default function Home() {
       </section>
 
       {/* Section Notre Vision */}
-      <section id="vision" className="py-16 px-8 bg-white h-screen flex items-center justify-center flex-col">
+      <section
+        id="vision"
+        className="py-16 px-8 bg-white h-screen flex items-center justify-center flex-col"
+      >
         <h2
           className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-black tracking-tighter mb-16 text-center`}
         >
@@ -112,7 +152,10 @@ export default function Home() {
         </h2>
         <div className="max-w-3xl mx-auto space-y-8">
           {t.vision.paragraphs.map((para, index) => (
-            <p key={index} className={`${inter.className} text-black text-base md:text-lg leading-relaxed`}>
+            <p
+              key={index}
+              className={`${inter.className} text-black text-base md:text-lg leading-relaxed`}
+            >
               {para}
             </p>
           ))}
@@ -120,14 +163,24 @@ export default function Home() {
       </section>
 
       {/* Section Notre Technique */}
-      <section id="technique" className="py-16 px-8 h-screen flex items-center justify-center flex-col">
+      <section
+        id="technique"
+        className="py-16 px-8 h-screen flex items-center justify-center flex-col"
+      >
         <h2
           className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-white/80 tracking-tighter mb-16 text-center`}
         >
           {t.technique.title}
         </h2>
         <div className="w-full max-w-4xl mx-auto">
-          <video className="w-full h-auto" controls autoPlay loop muted playsInline>
+          <video
+            className="w-full h-auto"
+            controls
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
             <source
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Statue%20video%20(2)-65trakXfBLsXkvEACaJ9mbglB5tbvS.mp4"
               type="video/mp4"
@@ -138,7 +191,10 @@ export default function Home() {
       </section>
 
       {/* Section Partners */}
-      <section id="partners" className="py-16 px-8 lg:h-screen bg-white flex items-center justify-center flex-col">
+      <section
+        id="partners"
+        className="py-16 px-8 lg:h-screen bg-white flex items-center justify-center flex-col"
+      >
         <h2
           className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-black tracking-tighter mb-16 text-center`}
         >
@@ -156,13 +212,17 @@ export default function Home() {
               <div className="w-32 h-32 md:w-48 md:h-48">
                 <div
                   className="w-full h-full bg-contain bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${partner.logo || "/placeholder.svg"})` }}
+                  style={{
+                    backgroundImage: `url(${partner.logo || "/placeholder.svg"})`
+                  }}
                 />
               </div>
             </Link>
           ))}
         </div>
-        <p className={`${inter.className} text-black text-center max-w-3xl mx-auto text-sm md:text-base leading-relaxed`}>
+        <p
+          className={`${inter.className} text-black text-center max-w-3xl mx-auto text-sm md:text-base leading-relaxed`}
+        >
           {t.partners.description}
         </p>
       </section>
