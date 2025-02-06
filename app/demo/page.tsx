@@ -126,7 +126,10 @@ const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
           {translations[lang].demo.selectMaterial}
         </h3>
         {selectedMaterial && (
-          <button onClick={() => handleMaterialSelect("")} className="text-sm text-black border border-black rounded px-2 py-1">
+          <button
+            onClick={() => handleMaterialSelect("")}
+            className="text-sm text-black border border-black rounded px-2 py-1"
+          >
             {translations[lang].demo.resetSelection}
           </button>
         )}
@@ -154,8 +157,9 @@ const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
                 <Notification
                   isVisible={showNotification}
                   onClose={() => setShowNotification(false)}
-                  message={`You've selected ${element.granit_title}. The 3D model has been updated.`}
-                />
+                >
+                  {`You've selected ${element.granit_title}. The 3D model has been updated.`}
+                </Notification>
               )}
             </div>
           ))}
