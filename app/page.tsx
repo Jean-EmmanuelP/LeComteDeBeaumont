@@ -169,3 +169,6 @@ export default function Home() {
     </div>
   );
 }
+
+// L'ajout de cette ligne garantit que le fichier est bien traité comme un module ES2015
+export {};
