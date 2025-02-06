@@ -23,14 +23,14 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-// --- Utilisation de l'augmentation de module au lieu d'un namespace global ---
-// Ceci ajoute le tag <model-viewer> aux éléments intrinsèques de JSX.
-export {};
-declare module "react" {
-  namespace JSX {
-    interface IntrinsicElements {
+// Extension de JSX.IntrinsicElements sans utiliser de namespace
+declare global {
+  interface JSX {
+    IntrinsicElements: {
       "model-viewer": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-    }
+      // On peut ajouter d'autres éléments personnalisés ici si nécessaire.
+      [elemName: string]: any;
+    };
   }
 }
 
