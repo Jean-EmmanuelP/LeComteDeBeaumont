@@ -24,10 +24,12 @@ const fadeInVariants = {
 };
 
 const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
+  // Utilisation d'un composant custom qui pointe vers le tag HTML "model-viewer"
+  const ModelViewerTag = "model-viewer" as unknown as React.ElementType;
   return (
     <div className="w-full h-full relative">
       <div className="absolute inset-0 bg-gray-100 backdrop-filter backdrop-blur-md"></div>
-      <model-viewer
+      <ModelViewerTag
         src={src}
         alt={alt}
         camera-controls
@@ -36,7 +38,7 @@ const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
         shadow-intensity="1"
         camera-orbit="0deg 75deg 2m"
         style={{ width: "100%", height: "100%", position: "relative", zIndex: 10 }}
-      ></model-viewer>
+      />
     </div>
   );
 };
