@@ -23,6 +23,9 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+// On définit ici le type de langue accepté
+type Language = "en" | "fr" | "ar";
+
 const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
   // Utilisation d'un composant custom qui pointe vers le tag HTML "model-viewer"
   const ModelViewerTag = "model-viewer" as unknown as React.ElementType;
@@ -69,7 +72,7 @@ interface GranitElement {
 
 interface GranitElementsProps {
   onMaterialSelect: (material: string) => void;
-  lang: string;
+  lang: Language;
 }
 
 const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
@@ -184,16 +187,16 @@ const modelMap: { [key: string]: string } = {
 };
 
 export default function Page() {
-  // Gestion de la langue via localStorage
-  const [lang, setLang] = useState("en");
+  // Typage de la langue en tant que littéral
+  const [lang, setLang] = useState<Language>("en");
   useEffect(() => {
     const storedLang = localStorage.getItem("lang");
-    if (storedLang) {
+    if (storedLang === "en" || storedLang === "fr" || storedLang === "ar") {
       setLang(storedLang);
     }
   }, []);
 
-  const changeLanguage = (newLang: string) => {
+  const changeLanguage = (newLang: Language) => {
     setLang(newLang);
     localStorage.setItem("lang", newLang);
   };
