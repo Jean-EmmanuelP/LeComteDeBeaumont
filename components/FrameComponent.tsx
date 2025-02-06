@@ -1,26 +1,26 @@
-"use client"
-import { Slider } from "@/components/ui/slider"
-import { useEffect, useRef, useState } from "react"
+"use client";
+import { Slider } from "@/components/ui/slider";
+import { useEffect, useRef, useState } from "react";
 
 interface FrameComponentProps {
-  video: string
-  width: number | string
-  height: number | string
-  className?: string
-  corner: string
-  edgeHorizontal: string
-  edgeVertical: string
-  mediaSize: number
-  borderThickness: number
-  borderSize: number
-  onMediaSizeChange: (value: number) => void
-  onBorderThicknessChange: (value: number) => void
-  onBorderSizeChange: (value: number) => void
-  showControls: boolean
-  label: string
-  showFrame: boolean
-  autoplayMode: "all" | "hover"
-  isHovered: boolean
+  video: string;
+  width: number | string;
+  height: number | string;
+  className?: string;
+  corner: string;
+  edgeHorizontal: string;
+  edgeVertical: string;
+  mediaSize: number;
+  borderThickness: number;
+  borderSize: number;
+  onMediaSizeChange: (value: number) => void;
+  onBorderThicknessChange: (value: number) => void;
+  onBorderSizeChange: (value: number) => void;
+  showControls: boolean;
+  label: string;
+  showFrame: boolean;
+  autoplayMode: "all" | "hover";
+  isHovered: boolean;
 }
 
 export function FrameComponent({
@@ -43,28 +43,31 @@ export function FrameComponent({
   autoplayMode,
   isHovered,
 }: FrameComponentProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isVideoReady, setIsVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
-    if (!videoRef.current) return
-
+    if (!videoRef.current) return;
+    
     const playVideo = async () => {
       try {
-        if (autoplayMode === "all" || (autoplayMode === "hover" && isHovered)) {
-          await videoRef.current.play()
-        } else {
-          videoRef.current.pause()
+        // Vérifier explicitement que videoRef.current n'est pas null
+        if (videoRef.current) {
+          if (autoplayMode === "all" || (autoplayMode === "hover" && isHovered)) {
+            await videoRef.current.play();
+          } else {
+            videoRef.current.pause();
+          }
         }
       } catch (error) {
-        console.error("Error playing video:", error)
+        console.error("Error playing video:", error);
       }
-    }
+    };
 
     if (isVideoReady) {
-      playVideo()
+      playVideo();
     }
-  }, [isHovered, autoplayMode, isVideoReady])
+  }, [isHovered, autoplayMode, isVideoReady]);
 
   return (
     <div
@@ -107,12 +110,14 @@ export function FrameComponent({
               onLoadedMetadata={() => setIsVideoReady(true)}
               onMouseEnter={(e) => {
                 if (autoplayMode === "hover") {
-                  e.currentTarget.play().catch((error) => console.error("Error playing video:", error))
+                  e.currentTarget.play().catch((error) =>
+                    console.error("Error playing video:", error)
+                  );
                 }
               }}
               onMouseLeave={(e) => {
                 if (autoplayMode === "hover") {
-                  e.currentTarget.pause()
+                  e.currentTarget.pause();
                 }
               }}
             />
@@ -185,7 +190,10 @@ export function FrameComponent({
           <div className="text-white font-bold mb-2">{label}</div>
           <div className="space-y-2">
             <div>
-              <label htmlFor={`media-size-${label}`} className="block text-sm font-medium text-white">
+              <label
+                htmlFor={`media-size-${label}`}
+                className="block text-sm font-medium text-white"
+              >
                 Media Size: {mediaSize.toFixed(2)}
               </label>
               <Slider
@@ -198,7 +206,10 @@ export function FrameComponent({
               />
             </div>
             <div>
-              <label htmlFor={`border-thickness-${label}`} className="block text-sm font-medium text-white">
+              <label
+                htmlFor={`border-thickness-${label}`}
+                className="block text-sm font-medium text-white"
+              >
                 Border Thickness: {borderThickness}px
               </label>
               <Slider
@@ -211,7 +222,10 @@ export function FrameComponent({
               />
             </div>
             <div>
-              <label htmlFor={`border-size-${label}`} className="block text-sm font-medium text-white">
+              <label
+                htmlFor={`border-size-${label}`}
+                className="block text-sm font-medium text-white"
+              >
                 Border Size: {borderSize}%
               </label>
               <Slider
@@ -227,6 +241,5 @@ export function FrameComponent({
         </div>
       )}
     </div>
-  )
+  );
 }
-
