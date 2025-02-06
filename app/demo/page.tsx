@@ -23,17 +23,6 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-// Extension de JSX.IntrinsicElements sans utiliser de namespace
-declare global {
-  interface JSX {
-    IntrinsicElements: {
-      "model-viewer": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-      // On peut ajouter d'autres éléments personnalisés ici si nécessaire.
-      [elemName: string]: any;
-    };
-  }
-}
-
 const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <div className="w-full h-full relative">
