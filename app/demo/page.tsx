@@ -88,13 +88,9 @@ interface GranitElementsProps {
 }
 
 const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
-  const [granitElements, setGranitElements] = useState<GranitElement[] | null>(
-    null
-  );
+  const [granitElements, setGranitElements] = useState<GranitElement[] | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(
-    null
-  );
+  const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGranitElements = async () => {
@@ -239,7 +235,9 @@ export default function Page() {
       script.type = "module";
       script.onload = () => setIsModelViewerLoaded(true);
       document.body.appendChild(script);
-      return () => document.body.removeChild(script);
+      return () => {
+        document.body.removeChild(script);
+      };
     }
   }, [isModelViewerLoaded]);
 
