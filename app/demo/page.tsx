@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { ppEditorialNewUltralightItalic, inter } from "../fonts";
@@ -10,7 +10,7 @@ import { supabase } from "@/lib/supabase";
 import { MaterialCard } from "@/components/MaterialCard";
 import { Button } from "@/components/ui/button";
 
-// Définition des étapes
+// Définition des étapes principales
 const steps = [
   { id: 0, title: "Input" },
   { id: 1, title: "Processing" },
@@ -54,13 +54,40 @@ const ModelViewer = ({ src, alt }: { src: string; alt: string }) => {
   );
 };
 
+/**
+ *  Cette composante gère trois sous-étapes :
+ *  1. Analyzing Prompt
+ *  2. Creating 3D Model
+ *  3. Adding Marble Layers
+ *  
+ *  À la fin des trois sous-étapes, onComplete() est appelé 
+ *  pour signaler la fin du traitement et passer au step suivant.
+ */
 const AIProcessingStep = ({ onComplete }: { onComplete: () => void }) => {
+  // Sous-étapes avec leur durée respective (en millisecondes)
+  const subSteps = [
+    { label: "Analyzing Prompt", duration: 1000 },
+    { label: "Creating 3D Model", duration: 1500 },
+    { label: "Adding Marble Layers", duration: 2000 }
+  ];
+
+  const [currentSubStep, setCurrentSubStep] = useState(0);
+
   useEffect(() => {
-    const timer = setTimeout(onComplete, 500);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+    if (currentSubStep < subSteps.length) {
+      const timer = setTimeout(() => {
+        setCurrentSubStep((prev) => prev + 1);
+      }, subSteps[currentSubStep].duration);
+
+      return () => clearTimeout(timer);
+    } else {
+      // Lorsque toutes les sous-étapes sont terminées, on appelle onComplete()
+      onComplete();
+    }
+  }, [currentSubStep, subSteps, onComplete]);
+
   return (
-    <div className="flex items-center justify-center h-64">
+    <div className="flex flex-col items-center justify-center h-64">
       <motion.div
         className="w-16 h-16 border-t-2 border-white rounded-full"
         animate={{ rotate: 360 }}
@@ -70,6 +97,11 @@ const AIProcessingStep = ({ onComplete }: { onComplete: () => void }) => {
           repeat: Infinity
         }}
       />
+      <div className="mt-4 text-white text-lg">
+        {currentSubStep < subSteps.length
+          ? subSteps[currentSubStep].label
+          : "Complete!"}
+      </div>
     </div>
   );
 };
@@ -189,7 +221,7 @@ const modelMap: { [key: string]: string } = {
   onyx_miel:
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/granit_amazonit-dheUleFjLBTl5pFA1OTR02lAq9QCyC.glb",
   quartz_taj_mahal:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral_grey-SmXOKb1K9hk10qaAKb3zHALkyhlwPW.glb"  
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral_grey-SmXOKb1K9hk10qaAKb3zHALkyhlwPW.glb"
 };
 
 export default function Page() {
@@ -206,7 +238,8 @@ export default function Page() {
   const tDemo = translations[lang].demo;
 
   const [currentStep, setCurrentStep] = useState(0);
-  // Comme le prompt ne change pas, nous n'avons plus besoin de récupérer setPrompt.
+
+  // Comme le prompt ne change pas, on utilise un state figé
   const [prompt] = useState(
     "A fallen Native American chief, his body lying on the battlefield. His elaborate headdress is askew, and his face shows a mix of determination and peace. His hand still grips a traditional weapon, symbolizing his fight to the very end. The scene captures the tragedy and nobility of a leader who died defending his people and land."
   );
@@ -215,6 +248,7 @@ export default function Page() {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isAudioSupported, setIsAudioSupported] = useState(true);
   const [selectedMaterial, setSelectedMaterial] = useState("granit_amazonite");
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const nextStep = () => {
@@ -230,6 +264,7 @@ export default function Page() {
       script.type = "module";
       script.onload = () => setIsModelViewerLoaded(true);
       document.body.appendChild(script);
+
       return () => {
         document.body.removeChild(script);
       };
@@ -255,19 +290,7 @@ export default function Page() {
     <div
       className={`min-h-screen bg-[#141414] flex flex-col p-4 sm:p-8 ${ppEditorialNewUltralightItalic.variable} ${inter.className}`}
     >
-      {/* Sélecteur de langue */}
-      {/* <div className="flex justify-end p-4">
-        <button onClick={() => changeLanguage("en")} className="mx-2">
-          <Image src="/flags/en.png" alt="English" width={32} height={32} />
-        </button>
-        <button onClick={() => changeLanguage("fr")} className="mx-2">
-          <Image src="/flags/fr.png" alt="Français" width={32} height={32} />
-        </button>
-        <button onClick={() => changeLanguage("ar")} className="mx-2">
-          <Image src="/flags/ar.png" alt="العربية" width={32} height={32} />
-        </button>
-      </div> */}
-
+      {/* Lien de retour */}
       <Link
         href="/"
         className="absolute top-4 left-4 text-white/70 hover:text-white text-sm sm:text-base"
@@ -275,7 +298,7 @@ export default function Page() {
         {tDemo.backButton}
       </Link>
 
-      {/* Steps Progress */}
+      {/* Barre de progression des étapes */}
       <motion.div
         className="w-full max-w-6xl mx-auto mb-8 sm:mb-16 mt-12 sm:mt-0"
         initial={{ opacity: 0, y: -20 }}
@@ -303,7 +326,7 @@ export default function Page() {
         </div>
       </motion.div>
 
-      {/* Content */}
+      {/* Contenu principal */}
       <div className="flex-1 w-full max-w-6xl mx-auto">
         <AnimatePresence mode="wait">
           {currentStep === 0 && (
@@ -385,6 +408,7 @@ export default function Page() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
+              {/* Notre composant avec les 3 sous-étapes : Analyzing, Creating, Adding */}
               <AIProcessingStep onComplete={nextStep} />
             </motion.div>
           )}

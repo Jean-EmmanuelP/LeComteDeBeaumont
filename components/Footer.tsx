@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Mail, Phone } from "lucide-react"
-import { ppEditorialNewUltralightItalic } from "@/app/fonts"
+import Link from "next/link";
+import { Mail, Phone } from "lucide-react";
+import { ppEditorialNewUltralightItalic } from "@/app/fonts";
 
 export function Footer() {
   return (
@@ -19,6 +19,10 @@ export function Footer() {
 
       {/* Footer Content */}
       <div className="container mx-auto px-4 pt-48 pb-24">
+        <p className="absolute right-[5vw] top-[10vh]">
+          Where advanced technology meets human creativity to set new
+          standards in art, industry, and technological development.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {/* Left Section - Navigation */}
           {/* <div className="flex flex-col space-y-6">
@@ -32,7 +36,6 @@ export function Footer() {
               Our Technical
             </Link>
           </div> */}
-
           {/* Middle Section - Contact */}
           <div className="flex flex-col space-y-6">
             <div className="flex items-center space-x-2">
@@ -46,7 +49,10 @@ export function Footer() {
             </div>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-white/50" />
-              <a href="tel:+33695511461" className="text-white/70 hover:text-white text-sm transition-colors">
+              <a
+                href="tel:+33695511461"
+                className="text-white/70 hover:text-white text-sm transition-colors"
+              >
                 +33 6 95 51 14 61
               </a>
             </div>
@@ -87,6 +93,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
