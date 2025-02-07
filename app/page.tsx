@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
 import { ppEditorialNewUltralightItalic, inter } from "../app/fonts";
@@ -46,27 +46,42 @@ const translations = translationsData as Translations;
 const partners = [
   {
     name: "Cartier",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Cartier-logo-Z0KBxSjE0eYbirVxbOfSayvVWgiWnT.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/8/86/Cartier_logo.svg",
     url: "https://www.cartier.com/",
   },
   {
     name: "Louvre",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/provisoire-louvre-logo-gsjNsePe6cfbFrqcGqnQptF0EljzBP.svg",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo0bT74bfe1W2IZMqa3WjPOoQJDwoHa_TeYg&s",
     url: "https://www.louvre.fr/",
   },
   {
     name: "Kering",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kering-PM76xQEY603nhfIjeB5GACqb0lnC8p.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/Kering-logo.svg",
     url: "https://www.kering.com/",
   },
   {
     name: "Sotheby's",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SOTHEBYS-logo-1-O5cSjSIZYXRaO5rPxhKAVu4ocYnJS9.svg",
+    logo: "https://sothebys-com.brightspotcdn.com/d0/cb/b08c40e043e1a36d5730ce82144b/sothebys-logo-2.svg",
     url: "https://www.sothebys.com/",
   },
   {
     name: "Four Seasons",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/four_seasons-TIxYqYrwBF83tK3wxnXidEPnydjbHH.svg",
+    logo: "https://www.facmetiers91.fr/wp-content/uploads/2023/06/Four_Seasons_logo.svg_.png",
+    url: "https://www.fourseasons.com/",
+  },
+  {
+    name: "Foster + Partners",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Foster_and_partners.svg",
+    url: "https://www.fourseasons.com/",
+  },
+  {
+    name: "Shangri La",
+    logo: "https://upload.wikimedia.org/wikipedia/en/b/bd/Shangri-La_Hotels_and_Resorts_logo.svg",
+    url: "https://www.fourseasons.com/",
+  },
+  {
+    name: "The Ritz Carlton",
+    logo: "https://cdn.freelogovectors.net/wp-content/uploads/2017/04/ritz-carlton-logo.png",
     url: "https://www.fourseasons.com/",
   },
 ];
@@ -116,10 +131,10 @@ export default function Home() {
                   <div className="h-px bg-white/10 w-full" />
                 </div>
               </div>
-              <div className="w-8 h-8 relative opacity-80 hover:opacity-100 transition-opacity">
+              <div className="w-12 h-12 sm:w-32 sm:h-32 relative opacity-80 hover:opacity-100 transition-opacity">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-04%20at%2019.43.28-cL9LjPagIWxtciIwDKhrH8A2uq6dwr.png"
-                  alt="Le Comte de Baumont"
+                  alt="Le Comte de Beaumont"
                   fill
                   className="object-cover rounded-full grayscale"
                 />
@@ -127,7 +142,7 @@ export default function Home() {
             </div>
             <Link
               href="/demo"
-              className="inline-block px-6 py-3 text-white/70 border border-white/20 rounded-full font-medium hover:bg-white/5 transition-colors text-center w-full max-w-[260px] text-sm mt-16"
+              className="inline-block px-6 py-3 text-white/70 border border-white/20 rounded-full font-medium hover:bg-white/5 transition-colors text-center w-full max-w-[260px] visible sm:hidden text-sm mt-16"
             >
               {t.hero.button}
             </Link>
@@ -136,6 +151,14 @@ export default function Home() {
           {/* Contenu droit */}
           <div className="w-full md:flex-grow h-[60vh] md:h-[70vh]">
             <DynamicFrameLayout />
+            <div className="w-full flex items-center justify-end">
+              <Link
+                href="/demo"
+                className="hidden sm:inline-block px-6 py-6 border self-end border-white/20 rounded-full font-normal bg-white text-black hover:text-black/70 transition-colors text-center w-[35%] text-2xl mt-16"
+              >
+                {t.hero.button}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -200,7 +223,7 @@ export default function Home() {
         >
           {t.partners.title}
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24 mb-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 md:space-x-10 md:space-y-2 mb-16 max-w-[80vw] mx-auto">
           {partners.map((partner) => (
             <Link
               key={partner.name}
@@ -213,7 +236,9 @@ export default function Home() {
                 <div
                   className="w-full h-full bg-contain bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: `url(${partner.logo || "/placeholder.svg"})`
+                    backgroundImage: `url(${
+                      partner.logo || "/placeholder.svg"
+                    })`,
                   }}
                 />
               </div>

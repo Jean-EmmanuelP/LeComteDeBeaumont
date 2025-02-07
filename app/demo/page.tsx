@@ -144,7 +144,7 @@ const GranitElements = ({ onMaterialSelect, lang }: GranitElementsProps) => {
           </button>
         )}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           initial={{ opacity: 0, y: 20 }}
@@ -175,9 +175,9 @@ const modelMap: { [key: string]: string } = {
   default:
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Dying%20Tecumseh%20150k-XOzqIRAEdYYiX0CP6yvuC1ScqAXATs.glb",
   granit_amazonite:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/granit_amazonit-dheUleFjLBTl5pFA1OTR02lAq9QCyC.glb",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/quartz_azul_macaubas-uNowajYeeFjDtu5D3iGbbdqaYzzVwt.glb",
   granit_rosa_porrino:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral_grey-SmXOKb1K9hk10qaAKb3zHALkyhlwPW.glb",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/granit_rosa_porino-lUzYjhrEhMB5dV9fohY8azCiXEVEce.glb",
   king_neutral:
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral-z48tUkgjSyVB6F80maAz7wpBumqYPX.glb",
   onyx_arco_iris:
@@ -189,7 +189,7 @@ const modelMap: { [key: string]: string } = {
   onyx_miel:
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/granit_amazonit-dheUleFjLBTl5pFA1OTR02lAq9QCyC.glb",
   quartz_taj_mahal:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral_grey-SmXOKb1K9hk10qaAKb3zHALkyhlwPW.glb"
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/king_neutral_grey-SmXOKb1K9hk10qaAKb3zHALkyhlwPW.glb"  
 };
 
 export default function Page() {
@@ -201,11 +201,6 @@ export default function Page() {
       setLang(storedLang);
     }
   }, []);
-
-  const changeLanguage = (newLang: Language) => {
-    setLang(newLang);
-    localStorage.setItem("lang", newLang);
-  };
 
   // Récupération des traductions pour la page demo depuis le JSON
   const tDemo = translations[lang].demo;
@@ -261,7 +256,7 @@ export default function Page() {
       className={`min-h-screen bg-[#141414] flex flex-col p-4 sm:p-8 ${ppEditorialNewUltralightItalic.variable} ${inter.className}`}
     >
       {/* Sélecteur de langue */}
-      <div className="flex justify-end p-4">
+      {/* <div className="flex justify-end p-4">
         <button onClick={() => changeLanguage("en")} className="mx-2">
           <Image src="/flags/en.png" alt="English" width={32} height={32} />
         </button>
@@ -271,7 +266,7 @@ export default function Page() {
         <button onClick={() => changeLanguage("ar")} className="mx-2">
           <Image src="/flags/ar.png" alt="العربية" width={32} height={32} />
         </button>
-      </div>
+      </div> */}
 
       <Link
         href="/"

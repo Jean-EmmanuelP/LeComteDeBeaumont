@@ -2,7 +2,7 @@
   "en": {
     "hero": {
       "title": "Le Comte\nde\nBeaumont",
-      "description": "The Comte de Baumont is a refined prompt-based solution that transforms your message into a customizable 3D visualization.\nMerging AI with robotics, it elegantly brings your vision to life.\nExperience transformation—delivered to your door.",
+      "description": "The Comte de Beaumont is a refined prompt-based solution that transforms your message into a customizable 3D visualization.\nMerging AI with robotics, it elegantly brings your vision to life.\nExperience transformation—delivered to your door.",
       "button": "Try a demo"
     },
     "vision": {
@@ -14,7 +14,7 @@
       ]
     },
     "technique": {
-      "title": "Our Technique"
+      "title": "Our Technical"
     },
     "partners": {
       "title": "Our Partners",
@@ -32,7 +32,7 @@
   "fr": {
     "hero": {
       "title": "Le Comte\nde\nBeaumont",
-      "description": "Le Comte de Baumont est une solution raffinée basée sur des prompts qui transforme votre message en une visualisation 3D personnalisable.\nFusionnant l'IA et la robotique, il donne vie élégamment à votre vision.\nDécouvrez la transformation—livrée à votre porte.",
+      "description": "Le Comte de Beaumont est une solution raffinée basée sur des prompts qui transforme votre message en une visualisation 3D personnalisable.\nFusionnant l'IA et la robotique, il donne vie élégamment à votre vision.\nDécouvrez la transformation—livrée à votre porte.",
       "button": "Essayez une démo"
     },
     "vision": {

@@ -21,33 +21,33 @@ export function Footer() {
       <div className="container mx-auto px-4 pt-48 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {/* Left Section - Navigation */}
-          <div className="flex flex-col space-y-6">
+          {/* <div className="flex flex-col space-y-6">
             <Link href="/customers" className="text-white/70 hover:text-white text-sm transition-colors">
               Our Partners
             </Link>
             <Link href="/vision" className="text-white/70 hover:text-white text-sm transition-colors">
-              Notre Vision
+              Our Vision
             </Link>
             <Link href="/technique" className="text-white/70 hover:text-white text-sm transition-colors">
-              Notre Technique
+              Our Technical
             </Link>
-          </div>
+          </div> */}
 
           {/* Middle Section - Contact */}
           <div className="flex flex-col space-y-6">
             <div className="flex items-center space-x-2">
               <Mail className="w-4 h-4 text-white/50" />
               <a
-                href="mailto:contact@lecomtedebaumont.com"
+                href="mailto:lecomtedebeaumont@gmail.com"
                 className="text-white/70 hover:text-white text-sm transition-colors"
               >
-                contact@lecomtedebaumont.com
+                lecomtedebeaumont@gmail.com
               </a>
             </div>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-white/50" />
-              <a href="tel:+33123456789" className="text-white/70 hover:text-white text-sm transition-colors">
-                +33 1 23 45 67 89
+              <a href="tel:+33695511461" className="text-white/70 hover:text-white text-sm transition-colors">
+                +33 6 95 51 14 61
               </a>
             </div>
           </div>
@@ -57,16 +57,16 @@ export function Footer() {
         </div>
 
         {/* Bottom Section with Large Title and Links */}
-        <div className="mt-24 flex flex-col md:flex-row justify-between items-end">
+        <div className="mt-24 flex flex-col md:flex-row justify-between md:items-end">
           <Link href="/">
             <h2
               className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-5xl text-white/80 font-light italic tracking-tighter mb-6 md:mb-0 cursor-pointer hover:text-white transition-colors`}
             >
-              Le Comte de Baumont
+              Le Comte de Beaumont
             </h2>
           </Link>
           <div className="flex flex-wrap gap-x-4 text-xs text-white/30">
-            <span>© 2025 LE COMTE DE BAUMONT</span>
+            <span>© 2025 LE COMTE DE BEAUMONT</span>
             <span>/</span>
             <Link href="/terms" className="hover:text-white/50">
               TERMS OF USE
