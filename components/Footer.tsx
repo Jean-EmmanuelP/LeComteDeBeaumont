@@ -19,7 +19,7 @@ export function Footer() {
 
       {/* Footer Content */}
       <div className="container mx-auto px-4 pt-48 pb-24">
-        <p className="absolute right-[5vw] top-[10vh]">
+        <p className="absolute lg:right-[5vw] right-[2vw] text-sm lg:text-normal top-[10vh]">
           Where advanced technology meets human creativity to set new
           standards in art, industry, and technological development.
         </p>
