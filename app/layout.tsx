@@ -5,8 +5,8 @@ import { PageTransition } from "@/components/PageTransition"
 import type React from "react"
 
 export const metadata = {
-  title: "Dynamic Frame Layout",
-  description: "A dynamic frame layout with custom fonts",
+  title: "Le Comte de Beaumont",
+  description: "Where advanced technology meets human creativity to set new standards in art, industry, and technological development.",
 }
 
 export default function RootLayout({
